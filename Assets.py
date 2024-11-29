@@ -1,15 +1,15 @@
 import pygame
 
 Data =[
-[14,0,0,0,0,14,0,0,14,0],
-[15,12,0,0,0,15,0,0,0,0],
-[15,0,0,10,0,15,13,0,12,0],
-[15,0,3,1,2,0,0,0,0,14],
+[14,0,0,17,0,14,17,0,14,0],
+[15,12,0,17,0,15,0,0,0,0],
+[15,14,0,10,0,15,13,0,12,0],
+[15,0,3,1,12,0,0,0,0,14],
 [0,13,0,14,0,0,0,3,1,1],
-[12,0,0,15,0,0,0,8,0,0],
-[0,0,0,0,0,0,0,8,12,0],
-[0,0,0,13,0,0,0,0,0,13],
-[16,0,0,0,0,0,0,14,0,0],
+[0,0,0,15,17,0,0,8,0,0],
+[0,0,0,0,17,0,0,8,12,0],
+[0,0,13,0,0,0,0,8,0,13],
+[16,0,0,0,0,0,0,8,0,0],
 [1,1,2,4,4,4,4,4,3,1]
 ]
 
@@ -26,6 +26,7 @@ class Assets():
         fourteen = pygame.image.load('/Users/han/PycharmProjects/Castle Hassle /Set/ropeAttached.png')
         fifteen = pygame.image.load('/Users/han/PycharmProjects/Castle Hassle /Set/ropeVertical.png')
         sixteen = pygame.image.load('/Users/han/PycharmProjects/Castle Hassle /Set/signRight.png')
+        seventeen = pygame.image.load('/Users/han/PycharmProjects/Castle Hassle /Set/chain.png')
 
         self.tile_group =[]
         row_count = 0

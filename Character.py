@@ -1,6 +1,7 @@
 import pygame
 
-from Map import lava_group
+from Map import lava_group, door1_group, door2_group, gold_group, bronze_group, box_group, key_group, secret_group
+
 
 class Character():
 
@@ -69,23 +70,53 @@ class Character():
                         self.vel_y = 0
                         self.in_air = True
 
+            obtain_key = False
+
             if pygame.sprite.spritecollide(self,lava_group,False):
                 game_over = 1
 
-        elif game_over ==1:
+            if pygame.sprite.spritecollide(self,gold_group,True) :
+                self.score += 20
+            if pygame.sprite.spritecollide(self,bronze_group,True):
+                self.score += 10
+
+            if pygame.sprite.spritecollide(self,door1_group,False):
+                game_over = 2
+            if pygame.sprite.spritecollide(self, door2_group, False):
+                game_over = 2
+
+            if pygame.sprite.spritecollide(self,box_group,True):
+                if pygame.sprite.spritecollide(self,key_group,False):
+                    game_over = 4
+
+            if pygame.sprite.spritecollide(self, secret_group, True):
+                game_over = 3
+
+
+        elif game_over == 1:
             self.char = self.image_dead
             self.rect.y -= 8
 
+        elif game_over == 2:
+            dx = 0
+            dy = 0
+            self.vel_y = 0
+
+        elif game_over == 3:
+            dx = 0
+            dy = 0
+            self.vel_y = 0
 
         dy += self.vel_y
 
         self.rect.x += dx
         self.rect.y += dy
 
-        if self.rect.top > screenY:  # If the character falls below the screen
-            game_over = 1  # Trigger game-over state
+#        if self.rect.top > screenY:  # If the character falls below the screen
+#            game_over = 1  # Trigger game-over state
 
         screen.blit(self.char,self.rect)
+        self.font.render("SCORE: " + str(self.score), True, (0, 0, 0))
 
         return game_over
 
@@ -123,4 +154,15 @@ class Character():
         self.width = self.char.get_width()
         self.height = self.char.get_height()
         self.is_air = False
+        self.score = 0
+
+
+    def display_score(self,x,y,screen):
+
+        self.font = pygame.font.Font('/Users/han/PycharmProjects/Castle Hassle /Font/truenoexbd.otf', 32)
+        display =self.font.render("SCORE: " + str(self.score), True, (255, 255, 255))
+        screen.blit(display,(x,y))
+
+
+
 
